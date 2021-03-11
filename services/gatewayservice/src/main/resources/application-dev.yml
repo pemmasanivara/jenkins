@@ -1,0 +1,97 @@
+server:
+  port: 8999
+  
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/     
+  instance:
+    prefer-ip-address: true                
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size:
+        50MB
+      max-file-size:
+        50MB     
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      filter:
+        remove-hop-by-hop:
+          headers:
+           - Access-Control-Allow-Origin
+           - Access-Control-Allow-Credentials 
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 10s        
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"             
+            allowedMethods: "*"          
+            allowed-headers:
+            - content-type
+            - Authorization
+            - time-stamp    
+            - authorization
+      routes:
+        - id: userservice
+          uri: lb://userservice
+          predicates:
+            - Path=/user/**  
+          filters:
+          - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+          - StripPrefix=1    
+        - id: therapistservice
+          uri: lb://therapistservice
+          predicates:
+            - Path=/therapist/**  
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            - StripPrefix=1        
+        - id: clientservice
+          uri: lb://clientservice
+          predicates:
+            - Path=/client/** 
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            - StripPrefix=1      
+        - id: adminservice
+          uri: lb://adminservice
+          predicates:
+            - Path=/admin/**   
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            - StripPrefix=1                 
+    loadbalancer:
+      ribbon:
+        enabled: false   
+        
+management:
+  endpoints.web.exposure.include: '*'
+  endpoint:
+    health:
+      show-details: always
+      
+logging:
+  level:
+    root: info
+    org.springframework: warn    
+    com.jrd.gateway: info
+  file:
+    name: /tmp/logs/gatewayservice.log
+    max-size: 10MB
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  
+  
+    
