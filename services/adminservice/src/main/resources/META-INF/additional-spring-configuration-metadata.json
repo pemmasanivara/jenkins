@@ -1,0 +1,87 @@
+{"properties": [
+  {
+    "name": "role.save.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.save.error'"
+  },
+  {
+    "name": "role.update.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.update.error'"
+  },
+  {
+    "name": "role.delete.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.delete.error'"
+  },
+  {
+    "name": "responsability.save.error",
+    "type": "java.lang.String",
+    "description": "A description for 'responsability.save.error'"
+  },
+  {
+    "name": "responsability.update.error",
+    "type": "java.lang.String",
+    "description": "A description for 'responsability.update.error'"
+  },
+  {
+    "name": "responsability.delete.error",
+    "type": "java.lang.String",
+    "description": "A description for 'responsability.delete.error'"
+  },
+  {
+    "name": "role.get.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.get.error'"
+  },
+  {
+    "name": "responsability.get.error",
+    "type": "java.lang.String",
+    "description": "A description for 'responsability.get.error'"
+  },
+  {
+    "name": "role.res.mapping.save.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.res.mapping.save.error'"
+  },
+  {
+    "name": "role.res.mapping.get.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.res.mapping.get.error'"
+  },
+  {
+    "name": "role.res.mapping.update.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.res.mapping.update.error'"
+  },
+  {
+    "name": "role.res.mapping.delete.error",
+    "type": "java.lang.String",
+    "description": "A description for 'role.res.mapping.delete.error'"
+  },
+  {
+    "name": "duplicate.entry",
+    "type": "java.lang.String",
+    "description": "A description for 'duplicate.entry'"
+  },
+  {
+    "name": "role.duplicate.entry",
+    "type": "java.lang.String",
+    "description": "A description for 'role.duplicate.entry'"
+  },
+  {
+    "name": "responsability.duplicate.entry",
+    "type": "java.lang.String",
+    "description": "A description for 'responsability.duplicate.entry'"
+  },
+  {
+    "name": "role.res.mapping.duplicate.entry",
+    "type": "java.lang.String",
+    "description": "A description for 'role.res.mapping.duplicate.entry'"
+  },
+  {
+    "name": "azure.activedirectory.authority",
+    "type": "java.lang.String",
+    "description": "A description for 'azure.activedirectory.authority'"
+  }
+]}
