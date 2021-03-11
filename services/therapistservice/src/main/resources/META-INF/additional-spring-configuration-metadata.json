@@ -1,0 +1,42 @@
+{"properties": [
+  {
+    "name": "email.duplicate.error",
+    "type": "java.lang.String",
+    "description": "A description for 'email.duplicate.error'"
+  },
+  {
+    "name": "therapist.update.error",
+    "type": "java.lang.String",
+    "description": "A description for 'therapist.update.error'"
+  },
+  {
+    "name": "therapist.save.error",
+    "type": "java.lang.String",
+    "description": "A description for 'therapist.save.error'"
+  },
+  {
+    "name": "therapist.availability.save.error",
+    "type": "java.lang.String",
+    "description": "A description for 'therapist.availability.save.error'"
+  },
+  {
+    "name": "therapist.availability.update.error",
+    "type": "java.lang.String",
+    "description": "A description for 'therapist.availability.update.error'"
+  },
+  {
+    "name": "therapist.availability.delete.error",
+    "type": "java.lang.String",
+    "description": "A description for 'therapist.availability.delete.error'"
+  },
+  {
+    "name": "therapist.search.error",
+    "type": "java.lang.String",
+    "description": "A description for 'therapist.search.error'"
+  },
+  {
+    "name": "email.duplicate.error",
+    "type": "java.lang.String",
+    "description": "A description for 'email.duplicate.error'"
+  }
+]}
