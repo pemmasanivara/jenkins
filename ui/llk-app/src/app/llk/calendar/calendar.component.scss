@@ -1,0 +1,110 @@
+::ng-deep {
+  .app-calendar {
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 960px) {
+    .page-header-calendar {
+      display: flex;
+      .page-title {
+        margin: 13px 30px 0px 30px;
+      }
+    }
+    .app-calendar {
+      margin: 0px 30px 0px 30px;
+    }
+    .page-header-calendar {
+      margin: 10px 0px;
+    }
+  }
+
+  @media screen and (max-width: 959px) {
+    .calendar-form {
+      width: 100% !important;
+      .form-element {
+        width: 100% !important;
+        margin-bottom: 0px !important;
+      }
+    }
+
+    .fc-toolbar {
+      display: block !important;
+    }
+
+    .fc-toolbar-chunk {
+      flex: 1 1 100%;
+    }
+  }
+  .calendar-form {
+    .form-element {
+      background-color: white !important;
+    }
+  }
+  .calendar-form .mat-form-field-wrapper {
+    padding-bottom: 0px;
+  }
+
+  .fc-button-primary:not(:disabled).fc-button-active,
+  .fc-button-primary:not(:disabled):active {
+    color: #2154b1 !important;
+  }
+  .fc-button-primary {
+    color: rgba(0, 0, 0, 0.87) !important;
+    background-color: #fff !important;
+    border-color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .bg-occupational {
+    color: #ffffff !important;
+    background-color: #fa6f1c !important;
+  }
+  .bg-music {
+    color: #ffffff !important;
+    background-color: #3788d8 !important;
+  }
+  .bg-art {
+    color: #ffffff !important;
+    background-color: #6baa3e !important;
+  }
+  .bg-speech {
+    color: #ffffff !important;
+    background-color: #6a0dad !important;
+  }
+  .bg-behavior {
+    color: #ffffff !important;
+    background-color: #a4262c !important;
+  }
+  .bg-recreational {
+    color: #ffffff !important;
+    background-color: #038387 !important;
+  }
+  .bg-technology {
+    color: #ffffff !important;
+    background-color: #8f7034 !important;
+  }
+  .bg-life-skills {
+    color: #ffffff !important;
+    background-color: #0078d4 !important;
+  }
+  .bg-social {
+    color: #ffffff !important;
+    background-color: #737373 !important;
+  }
+  .disabled-event {
+    filter: brightness(150%) grayscale(60%);
+    pointer-events: none;
+  }
+  .canceled-event {
+    filter: brightness(150%) grayscale(60%);
+    pointer-events: none;
+    font-weight: lighter;
+    text-decoration: line-through !important;
+  }
+  .canceled-event:before {
+    border-bottom: 1px solid #000;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 50%;
+  }
+}

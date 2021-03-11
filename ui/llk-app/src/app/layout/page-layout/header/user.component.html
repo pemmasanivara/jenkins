@@ -1,0 +1,18 @@
+<button mat-button class="llk-toolbar-button llk-avatar-button" href="javascript:void(0)" [matMenuTriggerFor]="menu">
+  <span class="llk-username" fxHide.lt-sm>User Name</span>
+  <img class="llk-avatar" src="./assets/images/img_avatar.png" width="32" alt="avatar" />
+</button>
+<mat-menu #menu="matMenu">
+  <a routerLink="/profile/overview" mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    <span>Profile</span>
+  </a>
+  <a routerLink="/profile/settings" mat-menu-item>
+    <mat-icon>settings</mat-icon>
+    <span>Settings</span>
+  </a>
+  <a (click)="logout()" mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </a>
+</mat-menu>

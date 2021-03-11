@@ -1,0 +1,38 @@
+// ==================================================
+// BRANDING
+// ==================================================
+
+.llk-branding {
+  display: inline-block;
+  color: inherit;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.llk-branding-logo-expanded {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  vertical-align: middle;
+
+  [dir='rtl'] & {
+    margin-left: 10px;
+    margin-right: auto;
+  }
+}
+
+.llk-branding-logo-expanded {
+  height: 35px;
+  margin-right: 10px;
+  vertical-align: middle;
+
+  [dir='rtl'] & {
+    margin-left: 10px;
+    margin-right: auto;
+  }
+}
+
+.llk-branding-name {
+  font-weight: normal;
+  vertical-align: middle;
+}

@@ -1,0 +1,251 @@
+// ==================================================
+// SIDENAV
+// ==================================================
+
+@mixin llk-sidenav-theme($theme) {
+  $background: mat-color($theme, "background");
+  $foreground: mat-color($theme, "foreground");
+
+  .llk-sidenav {
+    .llk-sidemenu {
+      a {
+        color: mat-color(map-get($theme, accent));
+        span {
+          color: mat-color(map-get($theme, primary));
+        }
+      }
+
+      .llk-sidemenu-item {
+        &:hover {
+          background: mat-color($background, hover);
+        }
+
+        &.open {
+          background: rgba(0, 0, 0, 0.02);
+        }
+
+        &.active {
+          > a {
+            color: mat-color(map-get($theme, accent));
+          }
+          border-left: 3px solid mat-color(map-get($theme, warn));
+        }
+      }
+      li {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .llk-sidebar-header {
+      color: mat-color($foreground, text);
+      background: mat-color($background, app-bar);
+      border-bottom: 1px solid $boder-color;
+    }
+  }
+}
+
+.llk-sidenav {
+  position: absolute;
+  overflow-x: hidden;
+  transition: swift-ease-out(width); // Only set width property
+
+  @include mat-elevation(2);
+
+  &.mat-drawer-side {
+    border-width: 0;
+  }
+
+  .llk-sidemenu {
+    width: $sidenav-width;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .llk-sidemenu-item {
+      display: block;
+      height: auto;
+      padding: 0;
+
+      &.open {
+        > .llk-sidemenu {
+          max-height: 2000px;
+        }
+
+        > .llk-sidemenu-toggle > .menu-caret {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 48px;
+      padding: 0 16px;
+      text-decoration: none;
+    }
+
+    .menu-icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 16px;
+      line-height: 18px;
+
+      [dir="rtl"] & {
+        margin-left: 16px;
+        margin-right: auto;
+      }
+    }
+
+    .menu-name,
+    .menu-label,
+    .menu-badge {
+      transition: swift-ease-out(opacity);
+    }
+
+    .menu-label,
+    .menu-badge {
+      @include badge();
+    }
+
+    .menu-badge {
+      border-radius: 10px;
+    }
+
+    .menu-caret {
+      display: block;
+      text-align: center;
+      transition: fast-out-slow(transform);
+    }
+
+    &.level-0 > li > a > .menu-name {
+      margin-right: 5px;
+
+      [dir="rtl"] & {
+        margin-left: 5px;
+        margin-right: auto;
+      }
+    }
+
+    &.level-1 > li > a {
+      padding-left: 50px;
+
+      [dir="rtl"] & {
+        padding-left: 16px;
+        padding-right: 50px;
+      }
+    }
+
+    &.level-2 > li > a {
+      padding-left: 64px;
+
+      [dir="rtl"] & {
+        padding-left: 16px;
+        padding-right: 64px;
+      }
+    }
+
+    &.submenu {
+      max-height: 0;
+      padding-top: 0;
+      overflow: hidden;
+      transform: translateZ(0) !important;
+      transition: fast-out-slow(max-height);
+
+      .llk-sidemenu-item {
+        border-left-width: 0;
+      }
+    }
+  }
+
+  .llk-sidebar-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: $toolbar-height-desktop;
+    padding: 0 10px;
+    overflow: hidden;
+
+    @include bp-lt(small) {
+      & {
+        height: $toolbar-height-mobile;
+      }
+    }
+
+    // Colorful
+    .llk-header-white & {
+      background-color: white;
+    }
+  }
+
+  .llk-sidebar-main {
+    height: calc(100% - #{$toolbar-height-desktop});
+    overflow: auto;
+
+    @include bp-lt(small) {
+      & {
+        height: calc(100% - #{$toolbar-height-mobile});
+      }
+    }
+  }
+}
+
+// Layout control
+.llk-sidenav-collapsed,
+.llk-sidenav-collapsed-fix {
+  .llk-sidenav {
+    width: $sidenav-collapsed-width;
+
+    .menu-name,
+    .menu-label,
+    .menu-badge,
+    .menu-caret,
+    .llk-user-panel-name,
+    .llk-user-panel-email,
+    .llk-user-panel-icons {
+      opacity: 0;
+    }
+
+    .llk-user-panel-avatar {
+      transform: scale(0.5);
+    }
+
+    &:hover {
+      width: $sidenav-width;
+
+      .menu-name,
+      .menu-label,
+      .menu-badge,
+      .menu-caret,
+      .llk-user-panel-name,
+      .llk-user-panel-email,
+      .llk-user-panel-icons {
+        opacity: 1;
+      }
+
+      .llk-user-panel-avatar {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.llk-sidenav-collapsed {
+  .llk-content-wrap {
+    margin-left: $sidenav-collapsed-width !important;
+
+    [dir="rtl"] & {
+      margin-left: auto !important;
+      margin-right: $sidenav-collapsed-width !important;
+    }
+  }
+
+  &[dir="rtl"] .llk-content-wrap {
+    margin-left: auto !important;
+    margin-right: $sidenav-collapsed-width !important;
+  }
+}

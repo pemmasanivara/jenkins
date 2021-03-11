@@ -1,0 +1,17 @@
+// Configuration
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+
+// Layout & Widgets
+@import 'core';
+@import 'widgets';
+
+// Material
+@import 'material';
+
+// Create llk theme
+@mixin llk-layout-theme($llk-theme) {
+  @include llk-sidenav-theme($llk-theme);
+  @include llk-toolbar-button-theme($llk-theme);
+}

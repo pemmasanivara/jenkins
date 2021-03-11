@@ -1,0 +1,30 @@
+.main-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+}
+.login{
+  width: 300px;
+  justify-content: center;
+}
+@media screen and (min-width: 1279px) {
+  .link-color {
+      color:#143a98;
+  }
+  .main-div {
+    width: 30%;
+    float: right;
+  }
+  .bg {
+    background-image: url("/assets/images/LLK_Building.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70%;
+    float: left;
+    object-fit:cover;
+  }
+}

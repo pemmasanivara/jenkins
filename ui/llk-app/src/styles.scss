@@ -1,0 +1,133 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+$mat-llk-warn: (
+  50: #feeee4,
+  100: #fed4bb,
+  200: #fdb78e,
+  300: #fc9a60,
+  400: #fb853e,
+  500: #fa6f1c,
+  600: #f96719,
+  700: #f95c14,
+  800: #f85211,
+  900: #f64009,
+  A100: #ffffff,
+  A200: #fff0ec,
+  A400: #ffc6b9,
+  A700: #ffb1a0,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+$mat-llk-primary: (
+  50: #e4eaf6,
+  100: #bccce8,
+  200: #90aad8,
+  300: #6487c8,
+  400: #426ebd,
+  500: #2154b1,
+  600: #1d4daa,
+  700: #1843a1,
+  800: #143a98,
+  900: #0b2988,
+  A100: #b8c6ff,
+  A200: #859cff,
+  A400: #5273ff,
+  A700: #385fff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff
+  )
+);
+
+$mat-llk-accent: (
+  50: #edf5e8,
+  100: #d3e6c5,
+  200: #b5d59f,
+  300: #97c478,
+  400: #81b75b,
+  500: #6baa3e,
+  600: #63a338,
+  700: #589930,
+  800: #4e9028,
+  900: #3c7f1b,
+  A100: #ceffb9,
+  A200: #aaff86,
+  A400: #86ff53,
+  A700: #74ff3a,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+$llk-primary: mat-palette($mat-llk-primary);
+$llk-accent: mat-palette($mat-llk-accent);
+
+// The warn palette is optional (defaults to red).
+$llk-warn: mat-palette($mat-llk-warn);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$llk-theme: mat-light-theme($llk-primary, $llk-accent, $llk-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($llk-theme);
+@import "app/layout/style/theming";
+@include llk-layout-theme($llk-theme);
+.error {
+  background-color: red;
+  color: white;    
+}
+
+/* You can add global styles to this file, and also import other style files */

@@ -1,0 +1,104 @@
+// ==================================================
+// HEADER
+// ==================================================
+
+.llk-header {
+  position: relative;
+  z-index: 201;
+  display: block;
+
+  .llk-toolbar {
+    padding: 0 8px;
+  }
+
+  // Layout control
+  .llk-header-fixed & {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.llk-toolbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  .mat-form-field-prefix .mat-icon {
+    font-size: 125%;
+  }
+  .mat-icon {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .mat-form-field-underline {
+    display: none;
+  }
+  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0.5em;
+  }
+  .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0.2em;
+    margin: 0em 0.4em;
+  }
+  .mat-form-field-label {
+    font-size: medium;
+  }
+  .llk-navbar-side.llk-header-fixed & {
+    border-bottom: unset;
+
+    @include mat-elevation(2);
+  }
+
+  .badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+}
+
+// Colorful
+.llk-header-white {
+  .llk-toolbar,
+  .llk-topmenu {
+    background-color: white;
+  }
+}
+
+// Customize toolbar button
+.llk-toolbar-button {
+  &.mat-button,
+  &.mat-icon-button {
+    margin: 0 4px;
+  }
+
+  &.mat-button {
+    min-width: unset;
+    line-height: 40px;
+    border-radius: 999px;
+  }
+
+  &.llk-avatar-button {
+    display: block;
+    padding: 0 4px;
+    font-size: 0;
+
+    .llk-avatar {
+      border-radius: 999px;
+    }
+
+    .llk-username {
+      margin: 0 8px;
+      font-size: 14px;
+    }
+  }
+}
+
+@mixin llk-toolbar-button-theme($theme) {
+  $background: mat-color($theme, "background");
+
+  .llk-toolbar-button {
+    &.mat-icon-button {
+      &:hover {
+        background-color: mat-color($background, hover);
+      }
+    }
+  }
+}

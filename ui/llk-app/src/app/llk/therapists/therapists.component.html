@@ -1,0 +1,416 @@
+<div>
+    <div class="page-header-add">
+        <mat-grid-list [cols]="10" rowHeight="60">
+            <mat-grid-tile [colspan]="breakpoint.tileFive">
+                <div class="mat-title page-title" *ngIf="!newUser && !isEditMode">
+                    Therapists
+                    <button mat-icon-button (click)="addNewUser()" matTooltip="Add Therapist" matRippleDisabled="true">
+                        <mat-icon>person_add</mat-icon>
+                    </button>
+                </div>
+                <div class="mat-title page-title" *ngIf="newUser && !isEditMode">
+                    Add Therapists
+                </div>
+                <div class="mat-title page-title" *ngIf="newUser && isEditMode">
+                    Update Therapists
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="breakpoint.tileFive">
+                <mat-card class="page-search-card">
+                    <mat-card-content>
+                        <mat-form-field>
+                            <mat-icon matPrefix>search</mat-icon>
+                            <input matInput type="search" placeholder="Search Therapists" string-validation
+                                class="search-input" [ngModel]="searchText" (ngModelChange)="handleSearch($event)">
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div *ngIf="newUser">
+        <ng-container class="new-user">
+            <mat-card class="new-user">
+                <mat-card-header class="add-user">
+                    <mat-card-title>
+                        <div class="row">
+                            <div class="columnOne">
+                                <div mat-card-avatar class="header-image">
+                                    <img class="header-image" src="{{formGroup.value.avatarUrl}}" />
+                                </div>
+                            </div>
+                            <div class="columnTwo">
+                                <p> Therapist Intake Form</p>
+                                <p class="help-text"> (Fields marked with * are required)</p>
+                            </div>
+                            <div class="columnThree">
+                                <button mat-icon-button style="float:right" matTooltip="Close" (click)="closeNewUser()">
+                                    <mat-icon>clear</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-divider></mat-divider>
+                    <div class="container">
+                        <form [formGroup]="formGroup" id="therapistForm" #therapistForm="ngForm" class="form">
+                            <div class="form-left">
+                                <mat-form-field appearance="outline" class="form-element">
+                                    <mat-label>First Name </mat-label>
+                                    <input matInput placeholder="First Name" autocomplete="off" name-validation
+                                        formControlName="firstName" required>
+                                    <mat-error
+                                        *ngIf="!formGroup.controls['firstName'].valid && therapistForm.submitted">
+                                        Please enter First Name</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-element">
+                                    <mat-label>Last Name </mat-label>
+                                    <input matInput placeholder="Last Name" autocomplete="off" name-validation
+                                        formControlName="lastName" required>
+                                    <mat-error *ngIf="!formGroup.controls['lastName'].valid && therapistForm.submitted">
+                                        Please enter Last Name
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-element">
+                                    <mat-label>Gender </mat-label>
+                                    <mat-select formControlName="gender" [compareWith]="compare" required>
+                                        <mat-option *ngFor="let gender of gendersList" [value]="gender.value">
+                                            {{gender.display}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!formGroup.controls['gender'].valid && therapistForm.submitted">
+                                        Please select gender
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-element">
+                                    <mat-label>Date of Birth </mat-label>
+                                    <input matInput [matDatepicker]="picker0" placeholder="MM/DD/YYYY" [min]="minDate"
+                                        [max]="maxDate" formControlName="dob" required readonly
+                                        (click)="picker0.open()">
+                                    <mat-datepicker-toggle matSuffix [for]="picker0" [startAt]="formGroup.value.dob">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker0></mat-datepicker>
+                                    <mat-error *ngIf="!formGroup.controls['dob'].valid && therapistForm.submitted">
+                                        Please select Date of Birth</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-element">
+                                    <mat-label>Therapist type </mat-label>
+                                    <mat-select formControlName="therapistType" [compareWith]="compareTherapistType"
+                                        required>
+                                        <mat-option *ngFor="let level of levelsList" [value]="level.levelId">
+                                            {{level.levelName}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="!formGroup.controls['therapistType'].valid && therapistForm.submitted">
+                                        Please Select Therapist type
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-element">
+                                    <mat-label>Email </mat-label>
+                                    <input matInput type="email" autocomplete="off" email-validation placeholder="Email"
+                                        formControlName="email" required>
+                                    <mat-error *ngIf="!formGroup.controls['email'].valid && therapistForm.submitted">
+                                        Please enter Email
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-element">
+                                    <mat-label>Cell Phone </mat-label>
+                                    <input matInput placeholder="Cell Phone" autocomplete="off" phone-validation
+                                        matTooltip="Please Add the country code before Cell Phone number (+1)"
+                                        formControlName="phone" required>
+                                    <mat-error *ngIf="!formGroup.controls['phone'].valid && therapistForm.submitted">
+                                        Please enter Cell Phone
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-right">
+                                <mat-grid-list cols="10" rowHeight="80">
+                                    <mat-grid-tile [colspan]="breakpoint.tileThree">
+                                        <mat-form-field appearance="outline" class="form-element-two">
+                                            <mat-label>Sessions Covered? </mat-label>
+                                            <mat-select formControlName="sessionsCovered" [compareWith]="compareTherapy"
+                                                required>
+                                                <mat-option *ngFor="let  therapyType of therapyTypesList"
+                                                    [value]="therapyType">
+                                                    {{therapyType.therapyName}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error
+                                                *ngIf="!formGroup.controls['sessionsCovered'].valid && therapistForm.submitted">
+                                                Please select Session</mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile [colspan]="breakpoint.tileThree" formArrayName="communicationMode">
+                                        <div class="form-element-two fieldset">
+                                            <fieldset class="form-element-two" [ngClass]="{'form-error':!formGroup.controls['communicationMode'].valid && therapistForm.submitted}">
+                                                <legend>Communication Mode  *</legend>
+                                                <span
+                                                    *ngFor="let mode of getcommunicationMode().controls; let i = index">
+                                                    <mat-checkbox [formControlName]="i">
+                                                        {{communicationmodesList[i].display}} &nbsp; &nbsp;
+                                                    </mat-checkbox>
+                                                </span>
+                                            </fieldset>
+                                            <mat-error class="mat-form-field-subscript-wrapper"
+                                                *ngIf="!formGroup.controls['communicationMode'].valid && therapistForm.submitted">
+                                                Please select Communication Mode
+                                            </mat-error>
+                                        </div>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile [colspan]="breakpoint.tileFour">
+                                        <mat-form-field appearance="outline" class="form-element-three">
+                                            <mat-label>Certifications </mat-label>
+                                            <input matInput placeholder="Certifications" string-validation
+                                                autocomplete="off" formControlName="certifications">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <h2>Availability</h2>
+                                <mat-card class="cardFormItem">
+                                    <mat-card-content>
+                                        <mat-grid-list cols="10" rowHeight="75">
+                                            <mat-grid-tile [colspan]="breakpoint.tileThree">
+                                                <mat-form-field appearance="outline" class="form-element">
+                                                    <mat-label>Repeats</mat-label>
+                                                    <mat-select formControlName="repeats" [compareWith]="compare"
+                                                        required>
+                                                        <mat-option *ngFor="let repeat of repeatsList"
+                                                            [value]="repeat.value">
+                                                            {{repeat.display}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <mat-error
+                                                        *ngIf="!formGroup.controls['repeats'].valid && therapistForm.submitted">
+                                                        Please select Repeats</mat-error>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile [colspan]="breakpoint.tileTwo">
+                                                <mat-form-field appearance="outline" class="form-element-two">
+                                                    <mat-label>Every </mat-label>
+                                                    <mat-select formControlName="repeatsEvery" [compareWith]="compare"
+                                                        required>
+                                                        <mat-option *ngFor="let week of weeksList" [value]="week.value">
+                                                            {{week.display}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <mat-error
+                                                        *ngIf="!formGroup.controls['repeatsEvery'].valid && therapistForm.submitted">
+                                                        Please select Every
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile [colspan]="breakpoint.tileOne">
+                                                <mat-label>Week</mat-label>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile [colspan]="breakpoint.tileFour" formGroupName="repeatsOn">
+                                                <fieldset class="form-element-three">
+                                                    <legend>On</legend>
+                                                    <div class="form-element-weeks">
+                                                        <mat-checkbox class="example-margin" formControlName="sunday">Su
+                                                        </mat-checkbox>
+                                                        <mat-checkbox class="example-margin" formControlName="monday">M
+                                                        </mat-checkbox>
+                                                        <mat-checkbox class="example-margin" formControlName="tuesday">
+                                                            Tu</mat-checkbox>
+                                                        <mat-checkbox class="example-margin"
+                                                            formControlName="wednesday">W</mat-checkbox>
+                                                        <mat-checkbox class="example-margin" formControlName="thursday">
+                                                            Th</mat-checkbox>
+                                                        <mat-checkbox class="example-margin" formControlName="friday">F
+                                                        </mat-checkbox>
+                                                        <mat-checkbox class="example-margin" formControlName="saturday">
+                                                            Sa</mat-checkbox>
+                                                    </div>
+                                                </fieldset>
+                                            </mat-grid-tile>
+                                            <!-- Row end-->
+                                            <mat-grid-tile [colspan]="breakpoint.tileThree">
+                                                <mat-form-field appearance="outline" class="form-element">
+                                                    <mat-label>Start Date </mat-label>
+                                                    <input matInput [matDatepicker]="picker1" placeholder="MM/DD/YYYY"
+                                                        formControlName="startDate" required readonly
+                                                        [min]="startMinDate" [max]="startMaxDate"
+                                                        (dateInput)="onStartDateChange($event)"
+                                                        (click)="picker1.open()">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker1">
+                                                    </mat-datepicker-toggle>
+                                                    <mat-datepicker #picker1></mat-datepicker>
+                                                    <mat-error
+                                                        *ngIf="!formGroup.controls['startDate'].valid && therapistForm.submitted">
+                                                        Please select Start Date</mat-error>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile [colspan]="breakpoint.tileThree">
+                                                <mat-form-field appearance="outline" class="form-element">
+                                                    <mat-label>End Date </mat-label>
+                                                    <input matInput [matDatepicker]="picker2" placeholder="MM/DD/YYYY"
+                                                        formControlName="endDate" required readonly [min]="endMinDate"
+                                                        (dateInput)="onEndDateChange($event)" (click)="picker2.open()">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker2">
+                                                    </mat-datepicker-toggle>
+                                                    <mat-datepicker #picker2></mat-datepicker>
+                                                    <mat-error
+                                                        *ngIf="!formGroup.controls['endDate'].valid && therapistForm.submitted">
+                                                        Please select End Date
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile *ngIf="breakpoint.search===2"
+                                                [colspan]="breakpoint.tileFour">
+                                                &nbsp; </mat-grid-tile>
+                                            <!-- Row end-->
+                                            <mat-grid-tile [colspan]="breakpoint.tileThree">
+                                                <mat-form-field appearance="outline" class="form-element">
+                                                    <mat-label>Start Time</mat-label>
+                                                    <mat-icon matSuffix (click)="startTime.open()">access_time
+                                                    </mat-icon>
+                                                    <input matInput placeholder="Start Time" formControlName="startTime"
+                                                        [ngxTimepicker]="startTime" [format]="24" min="{{startMinTime}}"
+                                                        max="{{startMaxTime}}" readonly required>
+                                                    <ngx-material-timepicker #startTime [appendToInput]="true"
+                                                        (timeChanged)="onStartTimeChange($event)">
+                                                    </ngx-material-timepicker>
+                                                    <mat-error
+                                                        *ngIf="!formGroup.controls['startTime'].valid && therapistForm.submitted">
+                                                        Please select Start Time</mat-error>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile [colspan]="breakpoint.tileThree">
+                                                <mat-form-field appearance="outline" class="form-element">
+                                                    <mat-label>End Time</mat-label>
+                                                    <mat-icon matSuffix (click)="endTime.open()">access_time</mat-icon>
+                                                    <input matInput placeholder="End Time" formControlName="endTime"
+                                                        [ngxTimepicker]="endTime" [format]="24" [min]="endMinTime"
+                                                        [max]="endMaxTime" readonly required>
+                                                    <ngx-material-timepicker #endTime [appendToInput]="true"
+                                                        (timeChanged)="onEndTimeChange($event)">
+                                                    </ngx-material-timepicker>
+                                                    <mat-error
+                                                        *ngIf="!formGroup.controls['endTime'].valid && therapistForm.submitted">
+                                                        Please select End Time
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile *ngIf="breakpoint.search===2"
+                                                [colspan]="breakpoint.tileFour">
+                                                &nbsp; </mat-grid-tile>
+                                            <!-- Row end-->
+                                            <mat-grid-tile [colspan]="breakpoint.tileThree">
+                                                <mat-form-field appearance="outline" class="form-element">
+                                                    <mat-label>Remainder</mat-label>
+                                                    <mat-select formControlName="remainder" [compareWith]="compare">
+                                                        <mat-option *ngFor="let remainder of remaindersList"
+                                                            [value]="remainder.value">
+                                                            {{remainder.display}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <mat-error
+                                                        *ngIf="!formGroup.controls['remainder'].valid && therapistForm.submitted">
+                                                        Please select Remainder</mat-error>
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile *ngIf="breakpoint.search===2"
+                                                [colspan]="breakpoint.tileThree">
+                                            </mat-grid-tile>
+                                            <mat-grid-tile *ngIf="breakpoint.search===2"
+                                                [colspan]="breakpoint.tileFour">
+                                                &nbsp;
+                                            </mat-grid-tile>
+                                        </mat-grid-list>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </form>
+                        <div *ngIf="!isEditMode" class="container-upload">
+                            <form [formGroup]="uploadFormGroup" id="uploadForm" class="form-upload"
+                                enctype="multipart/form-data">
+                                <div class="form-left">
+                                    <mat-form-field appearance="outline" class="form-element">
+                                        <mat-label>Upload Photograph</mat-label>
+                                        <ngx-mat-file-input placeholder="Upload Photograph" #removableInput
+                                            accept=".png,.jpg,.jpeg" formControlName="profileImg">
+                                        </ngx-mat-file-input>
+                                        <button mat-icon-button matSuffix *ngIf="!removableInput.empty"
+                                            (click)="removableInput.clear($event)">
+                                            <mat-icon>clear</mat-icon>
+                                        </button>
+                                        <mat-icon matSuffix *ngIf="removableInput.empty">add_a_photo</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </form>
+                        </div>
+                        <button mat-raised-button  type="submit" form="therapistForm" class="calendar-icon"
+                        (click)="navigateWithState(isEditMode)"> <img src="./assets/images/calendar.jpg" width="100px" /></button>
+                        <!--<a mat-flat-button (click)="navigateWithState(isEditMode)" class="calendar-icon">
+                            <img src="./assets/images/calendar.jpg" width="100px" />
+                        </a>-->
+                    </div>
+                </mat-card-content>
+                <mat-card-footer align="right">
+                    <button mat-raised-button color="warn" (click)="cancel(isEditMode)">Reset</button>
+                    <button mat-raised-button color="primary" type="submit" form="therapistForm"
+                        (click)="addTherapist('form')" *ngIf="!isEditMode">Save</button>
+                    <button mat-raised-button color="primary" type="submit" form="therapistForm"
+                        (click)="updateTherapist('form')" *ngIf="isEditMode">Update</button>
+                </mat-card-footer>
+            </mat-card>
+        </ng-container>
+    </div>
+    <div *ngIf="!newUser">
+        <div class="avatar-card user-list">
+            <ng-container *ngFor="let detail of searchTherapistList">
+                <mat-card class="cardListItem">
+                    <mat-card-header>
+                        <mat-card-title *ngIf="breakpoint.list===2"> &nbsp; </mat-card-title>
+                        <mat-card-title *ngIf="breakpoint.list===1">
+                            <div class="header-image">
+                                <img src="{{detail.avatarUrl}}" />
+                            </div>
+                        </mat-card-title>
+                        <button mat-icon-button matTooltip="Edit" (click)="getTherapist(detail)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button align="right" matTooltip="Delete" (click)="deleteTherapist(detail)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-grid-list [cols]="breakpoint.list" rowHeight="30">
+                            <mat-grid-tile *ngIf="breakpoint.list===2" [rowspan]="3" class="avatar-img">
+                                <div mat-card-avatar class="header-image">
+                                    <img src="{{detail.avatarUrl}}" />
+                                </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile class="avatar-title">
+                                <div class="mat-title">{{detail.firstName}} {{detail.lastName}}</div>
+                            </mat-grid-tile>
+                            <mat-grid-tile class="avatar-title">
+                                <div class="mat-subheading-1">
+                                    <mat-icon class="contact-icon" *ngIf="breakpoint.list===1">mail</mat-icon> <span
+                                        *ngIf="breakpoint.list===2">E-mail:</span><span class="contact">
+                                        {{detail.email}}</span>
+                                </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile class="avatar-title">
+                                <div class="mat-subheading-1">
+                                    <mat-icon class="contact-icon" *ngIf="breakpoint.list===1">phone</mat-icon> <span
+                                        *ngIf="breakpoint.list===2">Mobile:</span><span class="contact">
+                                        {{detail.phone}}</span>
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-card-content>
+                    <mat-card-footer>
+                        &nbsp;
+                    </mat-card-footer>
+                </mat-card>
+            </ng-container>
+        </div>
+        <mat-paginator *ngIf="totalPages>0" #paginator paginator-style length="{{totalPages}}" [pageSize]="perPage">
+        </mat-paginator>
+        <!--  <mat-paginator #paginator [pageIndex]="pageNumber" [pageSize]="10" [length]="totalPages" (page)="pageEvent($event)">
+        </mat-paginator>-->
+    </div>
+</div>

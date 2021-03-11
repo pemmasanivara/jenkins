@@ -1,0 +1,47 @@
+<div class="page-header-calendar" fxLayout="row wrap">
+  <div class="mat-title page-title" fxflex.gt-sm="30%" fxflex.lt-md="100%">
+    Calendar
+  </div>
+  <div fxflex.gt-sm="70%" fxflex.lt-md="100%" class="calendar-form">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" fxLayout="row" fxLayout.lt-md="column"
+      fxLayoutGap="30px">
+      <mat-form-field appearance="outline" class="form-element">
+        <mat-label>Sessions Covered </mat-label>
+        <mat-select formControlName="sessionsCovered" (ngModelChange)="handleChange()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let session of therapyTypesList" [value]="session">
+            {{session.therapyName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-element" *ngIf="visible">
+        <mat-label>Therapist </mat-label>
+        <mat-select formControlName="therapist" (ngModelChange)="handleChange()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let therapist of therapistsList" [value]="therapist">
+            {{therapist.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-element" *ngIf="visible">
+        <mat-label>Client</mat-label>
+        <mat-select formControlName="client" (ngModelChange)="handleChange()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let client of clientsList" [value]="client">
+            {{client.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+<div class='app-calendar'>
+  <mat-card>
+    <mat-card-content>
+      <full-calendar deepChangeDetection="true" *ngIf="calendarOptions" #fullcalendar [options]="calendarOptions">
+      </full-calendar>
+    </mat-card-content>
+  </mat-card>
+</div>

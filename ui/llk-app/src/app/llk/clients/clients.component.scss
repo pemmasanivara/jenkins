@@ -1,0 +1,375 @@
+$llk-green: #6baa3e;
+::ng-deep {
+  .avatar-card > * {
+    box-sizing: border-box;
+  }
+  .calendar-icon {
+    position: absolute !important;
+    bottom: 60px;
+    right: 30px;
+  }
+  @media screen and (max-width: 567px) {
+    .user-list .mat-card-header {
+      margin-top: 16px !important ;
+    }
+    .avatar-card .avatar-title {
+      left: 0px !important ;
+      width: 100% !important ;
+    }
+    .mat-card-header .mat-card-title {
+      margin-bottom: 0px !important ;
+    }
+    .avatar-card .mat-card-header-text {
+      margin: 0px !important ;
+    }
+    .new-user .mat-card-header-text {
+      margin: 16px !important ;
+    }
+    .contact {
+      margin-bottom: 10px;
+    }
+    .contact-icon {
+      display: inline-flex;
+      vertical-align: top;
+    }
+    .columnTwo p {
+      font-size: 50%;
+    }
+    fieldset {
+      margin-right: 0px !important ;
+    }
+    
+  }
+  @media screen and (min-width: 568px) {
+    .avatar-card .avatar-title {
+      left: 110px !important ;
+      width: calc(100% - 100px) !important ;
+    }
+    fieldset.form-element-two {
+      padding-right: 0px !important ;
+      margin-right: 30px !important ;
+    }
+    .page-header-add {
+      padding-left: 10px;
+      padding: 10px 30px;
+    }
+    .user-list .mat-card-content {
+      margin-top: -30px !important;
+    }
+    .avatar-card {
+      margin: 0 0 0 30px;
+    }
+    .new-user {
+      margin: 0 30px;
+    }
+    /* Column Gap */
+    .avatar-card .mat-card {
+      margin-right: 32px;
+    }
+  }
+  /* medium size viewport */
+  @media screen and (min-width: 1280px) {
+    .guardian-tile .mat-figure {
+      margin-top: 20px !important;
+    }
+    .page-header-add .page-search-card {
+      margin-left: 16px;
+    }
+
+    /* Item sizing */
+    .cardListItem {
+      flex: 0 1 calc(50% - 32px);
+    }
+  }
+  /* small size viewport */
+  @media screen and (max-width: 1279px) {
+    .form-right{
+      padding-top: 20px;
+    }
+    .mat-card,
+    .new-user .mat-card.cardFormItem {
+      padding: 0px !important;
+      box-shadow: none;
+    }
+    .empty-tile {
+      display: none !important;
+    }
+    .new-user > .mat-card-content {
+      padding-bottom: 90px !important;
+    }
+    .new-user .mat-card {
+      margin-bottom: 0px !important;
+    }
+    .form-element,
+    .form-element-two {
+      padding-right: 0px !important;
+    }
+    .avatar-card > *:not(:last-child) {
+      margin-bottom: 32px;
+    }
+    .add-user {
+      margin-bottom: 0px !important;
+    }
+    .cardListItem,
+    .form-right,
+    .form-left {
+      flex: 0 1 99%;
+    }
+  }
+  .avatar-card .mat-card {
+    padding: 0px 16px !important;
+  }
+  .avatar-card,
+  .new-user {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .mat-icon {
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .add-user {
+      height: 100px;
+      width: 100%;
+    }
+    .header-image img {
+      background-size: cover;
+      border-radius: 999px;
+      height: 80px !important ;
+      width: 80px !important ;
+    }
+    .mat-grid-tile .mat-figure {
+      justify-content: flex-start !important ;
+      align-items: flex-start !important;
+    }
+    .mat-card-footer {
+      border-top: 1px solid #f0f0f0;
+      height: 50px;
+    }
+    .avatar-img {
+      width: 100px !important ;
+    }
+    .mat-card-header-text {
+      width: calc(100% - 50px);
+    }
+    .form-element-weeks .mat-checkbox-inner-container {
+      top: 17px;
+      left: 18px;
+      padding: 0px;
+      margin-right: 0px;
+    }
+    .mat-checkbox-label {
+      top: 0px;
+      left: 0px;
+    }
+  }
+
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+  .container .form {
+    padding: 10px 10px 0px;
+  }
+  .form-upload {
+    padding: 0px 10px;
+  }
+  .container .form,
+  .container-upload .form-upload {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .form-left {
+    width: 30%;
+  }
+
+  .form-right {
+    width: 70%;
+  }
+  .form-element,
+  .form-element-two {
+    padding-right: 30px;
+  }
+  .mat-paginator-range-label,
+  .mat-paginator-page-size {
+    display: none !important;
+  }
+  .page-header-add {
+    .user-list .mat-card-content {
+      margin-bottom: 0px;
+    }
+    .page-title {
+      width: 100%;
+      margin-right: 32px;
+      .mat-icon {
+        font-size: 40px;
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        color: #6baa3e;
+        width: 1.5em;
+      }
+    }
+    .mat-form-field {
+      width: 100%;
+    }
+    .page-search-card {
+      .mat-icon {
+        font-size: 175% !important;
+        width: 1.5em !important;
+        vertical-align: bottom;
+      }
+      .mat-form-field-appearance-legacy .mat-form-field-infix {
+        margin: 0em 0.4em;
+      }
+      .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+        padding-bottom: 0px;
+      }
+      .mat-form-field-underline {
+        display: none;
+      }
+      width: 100%;
+    }
+  }
+  .mat-form-field-label {
+    color: #000;
+  }
+  .new-user {
+    .mat-card-footer {
+      padding: 5px;
+      .mat-raised-button {
+        margin: 0 10px;
+      }
+    }
+  }
+  h2 {
+    margin: 0px !important;
+  }
+  fieldset {
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .button,
+  .form-element,
+  .form-element-two,
+  .form-element-three,
+  .mat-card-header,
+  .mat-card-footer,
+  .mat-card-content {
+    width: 100%;
+  }
+  .user-list .mat-card-content {
+    margin-bottom: 0px;
+  }
+  .mat-paginator {
+    color: rgba(0, 0, 0, 0.87);
+  }
+  legend {
+    font-size: 80%;
+  }
+  .cardListItem button {
+    z-index: 1;
+  }
+  fieldset.form-element-three {
+    padding: 0 10px 20px !important;
+    margin-top: -5px !important;
+  }
+  fieldset.form-element-two {
+    margin-top: -5px !important;
+  }
+  fieldset.form-element-two.radio-group{
+    padding: 10px 20px !important;
+  }
+  .form-element-weeks {
+    margin-top: -6px;
+  }
+  .timepicker__header {
+    padding: 0px 30px !important;
+  }
+  .clock-face {
+    width: 250px !important;
+    height: 250px !important;
+    padding: 0px !important;
+  }
+  .timepicker__actions {
+    padding: 5px !important;
+  }
+  .timepicker {
+    width: 260px !important;
+  }
+  .timepicker__body {
+    padding: 5px !important;
+  }
+  .clock-face__number--outer > span,
+  .clock-face__number--inner > span {
+    color: initial !important;
+  }
+  .clock-face__number--outer > span.disabled,
+  .clock-face__number--inner > span.disabled {
+    color: #c5c5c5 !important;
+  }
+  textarea {
+    resize: none !important;
+  }
+  .columnOne {
+    float: left;
+    width: 80px;
+  }
+  .columnTwo {
+    float: left;
+    width: calc(100% - 100px);
+  }
+  .columnTwo p {
+    margin: 12px;
+  }
+  .columnThree {
+    float: left;
+    width: 20px;
+  }
+  .help-text {
+    font-size: 15px;
+    font-weight: normal;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .timepicker {
+    .timepicker__header {
+      background-color: $llk-green !important;
+    }
+    .clock-face__clock-hand {
+      background-color: $llk-green !important;
+      &::after {
+        background-color: $llk-green !important;
+      }
+      &::before {
+        border-color: $llk-green !important;
+      }
+    }
+    .clock-face__number {
+      > span.active {
+        background-color: $llk-green !important;
+      }
+    }
+    button:not(.timepicker-dial__item) {
+      color: $llk-green !important;
+    }
+  }
+  .fieldset{
+    margin-right:0px !important;
+  }
+  .fieldset .mat-form-field-wrapper {
+    padding-bottom: 0px !important;
+  }
+  .fieldset .mat-form-field-subscript-wrapper {
+    position: relative !important;
+    margin-top: 0px;
+  }
+  .form-error {
+    border: 2px solid #fa6f1c !important;
+    color: #fa6f1c !important;
+  }
+ 
+}

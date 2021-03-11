@@ -1,0 +1,16 @@
+<mat-toolbar class="llk-toolbar">
+  <button mat-icon-button class="llk-toolbar-button" *ngIf="showToggle" (click)="toggleSidenav.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-form-field>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput type="search" placeholder="Search Therapists" class="search-input">
+  </mat-form-field>
+  <app-branding *ngIf="showBranding"></app-branding>
+  <span fxFlex></span>
+  <button mat-icon-button class="llk-toolbar-button" fxHide.lt-sm (click)="toggleFullscreen()">
+    <mat-icon>fullscreen</mat-icon>
+  </button>
+  <app-notification fxHide.lt-sm></app-notification>
+  <app-user></app-user>
+</mat-toolbar>

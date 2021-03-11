@@ -1,0 +1,29 @@
+<div class="llk-container-wrap" [ngClass]="{'llk-sidenav-collapsed': options.sidenavCollapsed && options.navPos!=='top',
+                 'llk-navbar-side': options.navPos==='side',
+                 'llk-navbar-top': options.navPos==='top',
+                 'llk-header-above': options.headerPos==='above',
+                 'llk-header-fixed': options.headerPos==='fixed',
+                 'llk-header-white': options.theme==='light'}" [dir]="options.dir">
+  <!-- Header Above -->
+  <app-header #header class="llk-header" *ngIf="options.showHeader && options.headerPos==='above'" [showBranding]="true"
+    (toggleSidenav)="sidenav.toggle()">
+  </app-header>
+  <mat-sidenav-container class="llk-container" autosize autoFocus>
+    <mat-sidenav #sidenav class="llk-sidenav" [mode]="isOver ? 'over' : 'side'"
+      [opened]="options.navPos==='side' && options.sidenavOpened && !isOver"
+      (openedChange)="sidenavOpenedChange($event)" (closedStart)="sidenavCloseStart()">
+      <app-sidebar [showToggle]="!isOver" [showUser]="options.showUserPanel" [showHeader]="options.headerPos!=='above'"
+        (toggleCollapsed)="toggleCollapsed()" [toggleChecked]="options.sidenavCollapsed">
+      </app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content #content class="llk-content-wrap">
+      <app-header #header class="llk-header" *ngIf="options.showHeader && options.headerPos!=='above'"
+        [showToggle]="!options.sidenavCollapsed && options.navPos!=='top'" [showBranding]="options.navPos==='top'"
+        (toggleSidenav)="sidenav.toggle()">
+      </app-header>
+      <div class="llk-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

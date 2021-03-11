@@ -1,0 +1,40 @@
+<mat-dialog>
+  <h1 mat-dialog-title>{{data.title}}</h1>
+  <button class="close" mat-button [mat-dialog-close]="">X</button>
+  <mat-dialog-content>
+    <mat-grid-list [cols]="1" rowHeight="30">
+      <mat-grid-tile class="avatar-title ">
+        <div class="mat-subheading-1 event-details">
+          <span >Start Date:
+          </span><span >
+            {{data.orgStartDate}}</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="avatar-title">
+        <div class="mat-subheading-1 event-details">
+          <span >End Date:
+          </span><span >
+            {{data.orgEndDate}}</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="avatar-title">
+        <div class="mat-subheading-1 event-details">
+          <span >Start Time:
+          </span><span >
+            {{data.startTime}}</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="avatar-title">
+        <div class="mat-subheading-1 event-details">
+          <span >End Time:
+          </span><span >
+            {{data.endTime}}</span>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-dialog-content>
+  <mat-dialog-actions align="right">
+    <button *ngIf="data.clientId" mat-raised-button color="primary" type="submit" [mat-dialog-close]="data">Book Event</button>
+    <button *ngIf="!data.clientId" mat-raised-button color="primary" type="submit" [mat-dialog-close]="data">Cancel Event</button>
+  </mat-dialog-actions>
+</mat-dialog>

@@ -1,0 +1,46 @@
+{
+  "menu": [{
+      "state": "home",
+      "name": "Home",
+      "type": "link",
+      "icon": "home"    
+    },
+	{
+      "state": "dashboard",
+      "name": "Dashboard",
+      "type": "link",
+      "icon": "equalizer"     
+    },
+	{
+      "state": "inbox",
+      "name": "Inbox",
+      "type": "link",
+      "icon": "mail_outline"    
+    },
+	{
+      "state": "invoices",
+      "name": "Invoices",
+      "type": "link",
+      "icon": "receipt"     
+    },{
+      "state": "therapists",
+      "name": "Therapists",
+      "type": "link",
+      "icon": "perm_identity"    
+    },
+	{
+     "state": "clients",
+      "name": "Clients",
+      "type": "link",
+      "icon": "accessibility_new" 
+    },
+	{
+      "state": "calendar",
+      "name": "Calendar",
+      "type": "link",
+      "icon": "event"    
+    }
+	
+    
+  ]
+}
